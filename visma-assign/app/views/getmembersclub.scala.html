@@ -1,0 +1,59 @@
+@import helper._
+@(userForm: Form[Models.MemberFormData], Members : Seq[Models.Member])(implicit request: play.api.mvc.RequestHeader)
+
+@main("Member Add") {
+
+<section>
+    <div class="wrapper" >
+        <h2> let's add an user</h2>
+        <form method="post" action="@routes.HomeController.createMember()" role="form" align="left">
+            <fieldset>
+                <table class="table">
+                    <tr>
+                        <td>Member First name:</td><td></td>
+                        <td><input type="text" name="first_name" id="first_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Member Last name:</td><td></td> <td>
+                        <input type="text" name="last_name" id="last_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Member Club:</td><td></td><td>
+                        <input type="text" name="club_name" id="club_name"></td>
+                    </tr>
+                    <tr><td></td>
+                        <td>
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <div class="wrapper" aligh="center">
+        <fieldset>
+            <legend align="center"><h3>Registered Members</h3></legend>
+            <table cellspacing="20" align="center">
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Club Name</th>
+                    <th>Club Initials</th>
+                </tr>
+                @for(member <- Members){
+                <tr>
+                    <td>@member.id</td>
+                    <td>@member.first_name</td>
+                    <td>@member.last_name</td>
+                    <td>@member.club_name</td>
+                    <td>@member.club_initials</td>
+                </tr>
+                }
+            </table>
+        </fieldset>
+    </div>
+</section>
+}

@@ -1,0 +1,13 @@
+REATE TABLE staging_membersclub as
+SELECT * FROM csvread('D:/Scala/MOCK_DATA.csv', null,'charset=UTF-8 fieldseparator=,')
+
+INSERT INTO membersclub(first_name, last_name, club_name)
+SELECT * FROM staging_membersclub;
+
+CREATE TABLE membersClub (
+	id	INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL,
+	club_name VARCHAR(100) NOT NULL,
+	club_initials VARCHAR(3)
+)
